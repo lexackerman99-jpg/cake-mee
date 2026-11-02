@@ -34,7 +34,7 @@
           <tbody>
           @foreach($recentOrders as $order)
             <tr>
-              <td>#{{ $order->id }}</td>
+              <td>#{{ $order->number }}</td>
               <td>{{ $order->customer_name }}</td>
               <td>{{ $order->created_at->format('d M Y, H:i') }}</td>
               <td><span class="status-badge status-{{ $order->status }}">{{ ucfirst($order->status) }}</span></td>

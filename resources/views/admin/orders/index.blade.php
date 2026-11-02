@@ -27,7 +27,7 @@
           <tbody>
           @foreach($orders as $order)
             <tr>
-              <td>#{{ $order->id }}</td><td>{{ $order->customer_name }}</td>
+              <td>#{{ $order->number }}</td><td>{{ $order->customer_name }}</td>
               <td><a href="https://wa.me/{{ preg_replace('/\D+/', '', $order->phone) }}" target="_blank" rel="noopener">{{ $order->phone }}</a></td>
               <td>{{ $order->created_at->format('d M Y, H:i') }}</td>
               <td><span class="status-badge status-{{ $order->status }}">{{ ucfirst($order->status) }}</span></td>

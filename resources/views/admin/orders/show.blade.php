@@ -4,7 +4,7 @@
 <section class="admin-page">
   @include('admin._nav')
   <div class="admin-heading">
-    <div><span class="eyebrow">Transaksi</span><h2>Pesanan #{{ $order->id }}</h2><p class="admin-subtitle">Dibuat {{ $order->created_at->format('d M Y, H:i') }}</p></div>
+    <div><span class="eyebrow">Transaksi</span><h2>Pesanan #{{ $order->number }}</h2><p class="admin-subtitle">Dibuat {{ $order->created_at->format('d M Y, H:i') }}</p></div>
     <a class="btn btn-muted" href="{{ route('admin.orders.index') }}">← Semua Pesanan</a>
   </div>
 

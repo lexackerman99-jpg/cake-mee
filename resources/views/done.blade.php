@@ -1,4 +1,4 @@
-@extends('layout') @section('content')<h2>Pesanan #{{ $o->id }} tersimpan</h2>
+@extends('layout') @section('content')<h2>Pesanan #{{ $o->number }}</h2>
 <div class="order-confirmation">
   <p>Total: <b>Rp {{ number_format($o->total,0,',','.') }}</b> (diskon Rp {{ number_format($o->discount,0,',','.') }}).</p>
   <p>Metode pembayaran: <b>{{ $o->paymentMethodLabel() }}</b></p>
