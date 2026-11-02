@@ -54,7 +54,9 @@ class ShopController extends Controller {
     $i=$this->items(); if($i->isEmpty()) return redirect()->route('home');
     $t=$this->calc($i);
     $o = DB::transaction(function() use($d,$i,$t){
+      $next = (int) DB::table('orders')->lockForUpdate()->count() + 1;
       $o = Order::create($d+[
+        'order_no'=>'CM-'.str_pad($next, 4, '0', STR_PAD_LEFT),
         'subtotal'=>$t['sub'],
         'discount'=>$t['disc'],
         'total'=>$t['total'],

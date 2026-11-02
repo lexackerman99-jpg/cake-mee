@@ -23,4 +23,9 @@ class Order extends Model {
       default => 'Menunggu konfirmasi',
     };
   }
+    public function getNumberAttribute(): string
+  {
+    return $this->order_no ?? ('CM-' . str_pad($this->id, 4, '0', STR_PAD_LEFT));
+  }
 }
+
