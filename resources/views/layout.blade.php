@@ -173,7 +173,7 @@ img{max-width:100%}
 .step p{margin:0;color:var(--mut);font-size:.92rem}
 
 /* ---------- shared (halaman lain) ---------- */
-.page{max-width:1160px;margin:0 auto;padding:44px 24px 70px;animation:fadeUp .6s var(--ease) both}
+.page{width:100%;max-width:1160px;margin:0 auto;padding:44px 24px 70px;animation:fadeUp .6s var(--ease) both}
 .page h2{font-size:1.9rem;font-weight:800;letter-spacing:-.03em;margin:0 0 18px}
 .page .cart-title{text-align:center}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--pink);color:#fff;border:0;border-radius:999px;padding:11px 20px;font:700 .92rem 'Plus Jakarta Sans',sans-serif;cursor:pointer;text-decoration:none;box-shadow:0 6px 16px rgba(228,8,127,.25);transition:transform .2s var(--ease),box-shadow .25s,background .25s}
@@ -201,11 +201,15 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .auth-box{margin-top:32px}
 .note-admin{margin-top:18px;padding:12px 14px;border-radius:12px;background:var(--pink-soft);color:var(--ink);font-size:.92rem;text-align:center}
 .admin-page .hint{text-align:left}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin:24px 0 30px}
-.stat-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 20px;box-shadow:0 12px 26px rgba(228,8,127,.06)}
-.stat-card span{display:block;color:var(--mut);font-size:1rem;margin-bottom:8px}
-.stat-card strong{font-size:2.25rem;line-height:1.2;letter-spacing:-.04em;color:var(--ink)}
-.stat-revenue strong{font-size:clamp(1.55rem,2.1vw,1.8rem);white-space:nowrap}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:24px 0 30px}
+.stats-grid:has(.stat-revenue){grid-template-columns:minmax(250px,1.5fr) repeat(4,minmax(0,1fr))}
+.stat-card{display:flex;flex-direction:column;justify-content:space-between;gap:12px;min-width:0;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 12px 26px rgba(228,8,127,.06)}
+.stat-card span{display:block;color:var(--mut);font-size:.92rem;font-weight:600;line-height:1.3;margin:0}
+.stat-card strong{font-size:2rem;line-height:1.1;letter-spacing:-.04em;color:var(--ink)}
+.stat-revenue{background:linear-gradient(135deg,var(--pink),#ff5aa8);border-color:transparent;box-shadow:0 14px 30px rgba(228,8,127,.22)}
+.stat-revenue span{color:rgba(255,255,255,.88)}
+.stat-revenue strong{color:#fff;font-size:clamp(1.7rem,2.6vw,2.2rem);white-space:nowrap}
+@media(max-width:1100px){.stats-grid:has(.stat-revenue){grid-template-columns:repeat(2,minmax(0,1fr))}.stat-revenue{grid-column:1/-1}}
 .admin-page{max-width:1160px;margin:0 auto}
 .admin-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 30px;padding:8px;background:#fff;border:1px solid var(--line);border-radius:16px}
 .admin-nav a,.admin-nav button{display:inline-flex;align-items:center;padding:9px 14px;border:0;border-radius:10px;background:transparent;color:var(--mut);font:600 .9rem 'Plus Jakarta Sans',sans-serif;text-decoration:none;cursor:pointer}
@@ -223,6 +227,7 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .admin-table{min-width:720px;margin:0;border:0;border-radius:0}
 .admin-table th,.admin-table td{padding:13px 14px}
 .admin-table td{vertical-align:middle}
+.admin-table tbody tr:hover td{background:#fff9fc}
 .admin-table th{white-space:nowrap}
 .table-wrap{overflow-x:auto}
 .table-note{display:block;color:var(--mut);font-size:.8rem;margin-top:3px}
@@ -349,8 +354,9 @@ footer{background:#1a0b14;color:#f3d9e6;margin-top:50px}
   .admin-nav form{margin-left:0}
   .admin-page .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .admin-page .stat-card{padding:14px}
-  .admin-page .stat-card strong{font-size:1.55rem;overflow-wrap:anywhere}
-  .admin-page .stat-card.stat-revenue strong{font-size:1.35rem;white-space:normal}
+  .admin-page .stat-card strong{font-size:1.35rem;overflow-wrap:anywhere}
+  .admin-page .stat-card.stat-revenue{grid-column:1/-1}
+  .admin-page .stat-card.stat-revenue strong{font-size:1.6rem;white-space:normal}
   .admin-panel{padding:16px;border-radius:16px}
   .admin-pagination{align-items:flex-start;flex-direction:column}
   .admin-pagination-links{max-width:100%;overflow-x:auto;padding-bottom:4px}
