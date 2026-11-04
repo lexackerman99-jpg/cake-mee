@@ -205,6 +205,7 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .stat-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:0 12px 26px rgba(228,8,127,.06)}
 .stat-card span{display:block;color:var(--mut);font-size:.84rem;margin-bottom:6px}
 .stat-card strong{font-size:2rem;letter-spacing:-.04em;color:var(--ink)}
+.stat-revenue strong{font-size:clamp(1.25rem,2vw,1.65rem);white-space:nowrap}
 .admin-page{max-width:1160px;margin:0 auto}
 .admin-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 30px;padding:8px;background:#fff;border:1px solid var(--line);border-radius:16px}
 .admin-nav a,.admin-nav button{display:inline-flex;align-items:center;padding:9px 14px;border:0;border-radius:10px;background:transparent;color:var(--mut);font:600 .9rem 'Plus Jakarta Sans',sans-serif;text-decoration:none;cursor:pointer}
@@ -349,6 +350,7 @@ footer{background:#1a0b14;color:#f3d9e6;margin-top:50px}
   .admin-page .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .admin-page .stat-card{padding:14px}
   .admin-page .stat-card strong{font-size:1.35rem;overflow-wrap:anywhere}
+  .admin-page .stat-card.stat-revenue strong{font-size:1.2rem;white-space:normal}
   .admin-panel{padding:16px;border-radius:16px}
   .admin-pagination{align-items:flex-start;flex-direction:column}
   .admin-pagination-links{max-width:100%;overflow-x:auto;padding-bottom:4px}

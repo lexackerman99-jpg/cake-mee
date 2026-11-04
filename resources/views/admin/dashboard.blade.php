@@ -13,7 +13,7 @@
   </div>
 
   <div class="stats-grid">
-    <article class="stat-card"><span>Omzet bulan ini</span><strong>Rp {{ number_format($monthlyRevenue, 0, ',', '.') }}</strong></article>
+    <article class="stat-card stat-revenue"><span>Omzet bulan ini</span><strong>Rp {{ number_format($monthlyRevenue, 0, ',', '.') }}</strong></article>
     <article class="stat-card"><span>Total pesanan</span><strong>{{ number_format($totalOrders) }}</strong></article>
     <article class="stat-card"><span>Menunggu diproses</span><strong>{{ number_format($pendingOrders) }}</strong></article>
     <article class="stat-card"><span>Produk katalog</span><strong>{{ number_format($totalProducts) }}</strong></article>
