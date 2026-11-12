@@ -8,9 +8,17 @@ class Order extends Model {
   public function paymentMethodLabel(): string
   {
     return match ($this->payment_method) {
+      'ewallet_gopay' => 'E-Wallet (GoPay)',
+      'ewallet_dana' => 'E-Wallet (DANA)',
+      'ewallet_ovo' => 'E-Wallet (OVO)',
       'ewallet' => 'E-Wallet',
+      'mbanking_bri' => 'M-Banking (BRI)',
+      'mbanking_bni' => 'M-Banking (BNI)',
+      'mbanking_bca' => 'M-Banking (BCA)',
+      'mbanking_mandiri' => 'M-Banking (Mandiri)',
       'mbanking' => 'M-Banking',
       'qris' => 'QRIS',
+      'cod' => 'COD (Bayar di Tempat)',
       default => 'Belum dipilih',
     };
   }

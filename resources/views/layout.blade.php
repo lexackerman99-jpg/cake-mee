@@ -303,6 +303,18 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .payment-option input{width:18px;height:18px;margin:0;accent-color:var(--pink);flex:none}
 .payment-option-copy strong,.payment-option-copy small{display:block}
 .payment-option-copy small{font-weight:400;color:var(--mut);font-size:.82rem}
+.payment-card-group{margin:9px 0;border:1px solid var(--line);border-radius:12px;background:#fff;transition:border-color .2s,background .2s;overflow:hidden}
+.payment-card-group:has(input[name="payment_method"]:checked){border-color:var(--pink);background:var(--pink-soft)}
+.payment-card-group .payment-option{margin:0;border:0;border-radius:0;background:transparent!important}
+.payment-sub-box{display:none;padding:0 16px 14px 44px}
+.payment-card-group.open .payment-sub-box,.payment-card-group:has(input[name="payment_method"]:checked) .payment-sub-box{display:block}
+.payment-sub-label{display:block;font-size:.8rem;font-weight:600;color:var(--mut);margin-bottom:8px}
+.payment-sub-grid{display:flex;gap:8px;flex-wrap:wrap}
+.payment-sub-chip{cursor:pointer;margin:0;display:inline-flex}
+.payment-sub-chip input{position:absolute;opacity:0;width:0;height:0;margin:0;pointer-events:none}
+.payment-sub-chip span{display:inline-flex;align-items:center;padding:7px 16px;border-radius:999px;font-size:.84rem;font-weight:700;background:#fff;border:1.5px solid var(--line);color:var(--ink);transition:all .2s}
+.payment-sub-chip:hover span{border-color:var(--pink);color:var(--pink)}
+.payment-sub-chip input:checked+span{background:var(--pink);border-color:var(--pink);color:#fff;box-shadow:0 4px 12px rgba(228,8,127,.25)}
 .order-confirmation{max-width:680px;padding:24px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 28px rgba(228,8,127,.06)}
 .order-confirmation p{margin:0 0 12px}
 @media(max-width:900px){.co{grid-template-columns:1fr}.sum{position:static;order:-1}}

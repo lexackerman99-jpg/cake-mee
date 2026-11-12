@@ -49,7 +49,7 @@ class ShopController extends Controller {
       'phone'=>['required','string','max:20'],
       'address'=>['required','string','max:1000'],
       'note'=>['nullable','string','max:1000'],
-      'payment_method'=>['required','in:ewallet,mbanking,qris'],
+      'payment_method'=>['required','in:ewallet,ewallet_gopay,ewallet_dana,ewallet_ovo,mbanking,mbanking_bri,mbanking_bni,mbanking_bca,mbanking_mandiri,qris,cod'],
     ]);
     $i=$this->items(); if($i->isEmpty()) return redirect()->route('home');
     $t=$this->calc($i);
