@@ -9,10 +9,16 @@ Route::get('/register',[AuthController::class,'registerForm'])->name('register')
 Route::post('/register',[AuthController::class,'register'])->name('register.submit');
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
-Route::get('/admin/login',[AdminController::class,'loginForm'])->name('admin.login');
-Route::post('/admin/login',[AdminController::class,'login'])->middleware('throttle:5,1')->name('admin.login.submit');
-Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/',[AdminController::class,'dashboard'])->name('dashboard');
+// Redirect jalur lama /admin ke /loginadmin
+Route::redirect('/admin', '/loginadmin');
+Route::redirect('/admin/{any}', '/loginadmin')->where('any', '.*');
+
+// Alur Login Admin & Dashboard Admin
+Route::get('/loginadmin',[AdminController::class,'loginForm'])->name('admin.login');
+Route::post('/loginadmin',[AdminController::class,'login'])->middleware('throttle:5,1')->name('admin.login.submit');
+
+Route::middleware('admin')->prefix('loginadmin')->name('admin.')->group(function () {
+    Route::get('/dashboard_admin',[AdminController::class,'dashboard'])->name('dashboard');
     Route::post('/logout',[AdminController::class,'logout'])->name('logout');
     Route::resource('products',\App\Http\Controllers\AdminProductController::class)->except('show');
     Route::get('/orders',[\App\Http\Controllers\AdminOrderController::class,'index'])->name('orders.index');

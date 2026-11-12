@@ -395,7 +395,7 @@ footer{background:#1a0b14;color:#f3d9e6;margin-top:50px}
       <img src="/logo.png" alt="Logo Mom Sitty">
       <span><b>Cake & Mee</b><small>Mom Sitty</small></span>
     </a>
-    @unless(request()->is('admin') || request()->is('admin/*'))
+    @unless(request()->is('admin') || request()->is('admin/*') || request()->is('loginadmin') || request()->is('loginadmin/*'))
     <nav class="menu" id="menu">
       <a href="{{ route('home') }}#katalog" class="{{ request()->routeIs('home') ? 'on' : '' }}">Pesan Sekarang</a>
       <a href="{{ route('home') }}#cara-pesan">Cara Pesan</a>
