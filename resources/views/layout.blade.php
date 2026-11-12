@@ -383,7 +383,6 @@ footer{background:#1a0b14;color:#f3d9e6;margin-top:50px}
       <img src="/logo.png" alt="Logo Mom Sitty">
       <span><b>Cake & Mee</b><small>Mom Sitty</small></span>
     </a>
-    @unless(request()->routeIs('admin.*'))
     <nav class="menu" id="menu">
       <a href="{{ route('home') }}#katalog" class="{{ request()->routeIs('home') ? 'on' : '' }}">Pesan Sekarang</a>
       <a href="{{ route('home') }}#cara-pesan">Cara Pesan</a>
@@ -396,7 +395,6 @@ footer{background:#1a0b14;color:#f3d9e6;margin-top:50px}
       <span class="n {{ session('ok') ? 'bump' : '' }}">{{ array_sum(session('cart', [])) }}</span>
     </a>
     <button class="burger" id="burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span></button>
-    @endunless
   </div>
 </header>
 

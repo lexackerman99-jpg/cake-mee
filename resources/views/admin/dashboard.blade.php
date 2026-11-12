@@ -17,13 +17,12 @@
     <article class="stat-card"><span>Total pesanan</span><strong>{{ number_format($totalOrders) }}</strong></article>
     <article class="stat-card"><span>Menunggu diproses</span><strong>{{ number_format($pendingOrders) }}</strong></article>
     <article class="stat-card"><span>Produk katalog</span><strong>{{ number_format($totalProducts) }}</strong></article>
-    <article class="stat-card"><span>Akun pelanggan</span><strong>{{ number_format($totalUsers) }}</strong></article>
   </div>
 
   <section class="admin-panel">
     <div class="panel-heading">
       <div><h3>Pesanan terbaru</h3><p>Delapan pesanan terakhir masuk.</p></div>
-      <a href="{{ route('admin.orders.index') }}">Semua pesanan →</a>
+      <a href="{{ route('admin.orders.index') }}">Semua pesanan â†’</a>
     </div>
     @if($recentOrders->isEmpty())
       <p class="empty-state">Belum ada pesanan.</p>
