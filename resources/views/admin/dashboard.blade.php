@@ -22,7 +22,7 @@
   <section class="admin-panel">
     <div class="panel-heading">
       <div><h3>Pesanan terbaru</h3><p>Delapan pesanan terakhir masuk.</p></div>
-      <a href="{{ route('admin.orders.index') }}">Semua pesanan â†’</a>
+      <a href="{{ route('admin.orders.index') }}">Semua pesanan &rarr;</a>
     </div>
     @if($recentOrders->isEmpty())
       <p class="empty-state">Belum ada pesanan.</p>

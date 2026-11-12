@@ -383,6 +383,7 @@ footer{background:#1a0b14;color:#f3d9e6;margin-top:50px}
       <img src="/logo.png" alt="Logo Mom Sitty">
       <span><b>Cake & Mee</b><small>Mom Sitty</small></span>
     </a>
+    @unless(request()->is('admin') || request()->is('admin/*'))
     <nav class="menu" id="menu">
       <a href="{{ route('home') }}#katalog" class="{{ request()->routeIs('home') ? 'on' : '' }}">Pesan Sekarang</a>
       <a href="{{ route('home') }}#cara-pesan">Cara Pesan</a>
@@ -395,6 +396,7 @@ footer{background:#1a0b14;color:#f3d9e6;margin-top:50px}
       <span class="n {{ session('ok') ? 'bump' : '' }}">{{ array_sum(session('cart', [])) }}</span>
     </a>
     <button class="burger" id="burger" type="button" aria-label="Buka menu" aria-expanded="false"><span></span></button>
+    @endunless
   </div>
 </header>
 
@@ -411,7 +413,6 @@ footer{background:#1a0b14;color:#f3d9e6;margin-top:50px}
 <footer>
   <div class="fin">
     <div class="fb"><img src="/logo.png" alt=""><div><b>Cake & Mee Mom Sitty</b><small>Menerima Pesanan</small></div></div>
-    <div><small>Jazakallah Khairan Syukron Katsiran</small><br><a href="https://wa.me/6281341591765" target="_blank" rel="noopener">WhatsApp 0813 4159 1765</a></div>
   </div>
   <div class="copy">© {{ date('Y') }} Cake & Mee Mom Sitty. Semua hak dilindungi.</div>
 </footer>
