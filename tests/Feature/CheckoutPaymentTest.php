@@ -11,7 +11,7 @@ class CheckoutPaymentTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_checkout_displays_the_supported_payment_methods(): void
+    public function test_guest_can_open_checkout_and_see_supported_payment_methods(): void
     {
         $product = $this->createProduct();
         $this->withSession(['cart' => [$product->id => 1]]);
@@ -19,12 +19,13 @@ class CheckoutPaymentTest extends TestCase
         $response = $this->get(route('checkout'));
 
         $response->assertOk();
+        $this->assertGuest();
         $response->assertSee('E-Wallet');
         $response->assertSee('M-Banking');
         $response->assertSee('QRIS');
     }
 
-    public function test_checkout_saves_selected_payment_method_and_waits_for_manual_confirmation(): void
+    public function test_guest_can_place_order_and_wait_for_manual_payment_confirmation(): void
     {
         $product = $this->createProduct();
         $this->withSession(['cart' => [$product->id => 2]]);
@@ -36,17 +37,25 @@ class CheckoutPaymentTest extends TestCase
             'payment_method' => 'qris',
         ]);
 
-        $order = Order::firstOrFail();
-
         $response->assertRedirect(route('order.done'));
+        $this->assertGuest();
+        $order = Order::firstOrFail();
         $this->assertDatabaseHas('orders', [
             'id' => $order->id,
+            'order_no' => 'CM-0001',
             'payment_method' => 'qris',
             'payment_status' => 'menunggu',
             'total' => 250000,
         ]);
+
         $response->assertSessionMissing('cart');
         $this->assertSame('QRIS', $order->paymentMethodLabel());
+
+        $confirmation = $this->get(route('order.done'));
+
+        $confirmation->assertOk();
+        $confirmation->assertSee('Pesanan #CM-0001');
+        $this->assertGuest();
     }
 
     public function test_checkout_rejects_unsupported_payment_method_without_creating_order(): void

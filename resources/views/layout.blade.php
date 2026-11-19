@@ -410,19 +410,8 @@ footer{background:#1a0b14;color:#f3d9e6;margin-top:60px}
     </a>
     @unless(request()->is('admin') || request()->is('admin/*') || request()->is('loginadmin') || request()->is('loginadmin/*'))
     <nav class="menu" id="menu">
-      <a href="{{ route('home') }}#katalog" class="{{ request()->routeIs('home') ? 'on' : '' }}">Katalog Kue</a>
+      <a href="{{ route('home') }}#katalog" class="{{ request()->routeIs('home') ? 'on' : '' }}">Pesan Sekarang</a>
       <a href="{{ route('home') }}#cara-pesan">Cara Pesan</a>
-      @auth
-        <span class="who">Hai, {{ auth()->user()->name }}</span>
-        <form method="POST" action="{{ route('logout') }}" style="display:inline">
-          @csrf
-          <button type="submit" class="lnk mut">Keluar</button>
-        </form>
-      @else
-        <a href="{{ route('login') }}"><svg class="i" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Masuk</a>
-        <a href="{{ route('register') }}">Daftar</a>
-      @endauth
-      <a class="tel" href="https://wa.me/6281341591765" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>0813 4159 1765</a>
     </nav>
     <a class="cart" href="{{ route('cart') }}">
       <svg class="i" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>

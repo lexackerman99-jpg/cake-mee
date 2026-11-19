@@ -167,12 +167,17 @@ class AdminDashboardTest extends TestCase
         $response->assertSee('class="admin-pagination"', false);
     }
 
-    public function test_customer_navigation_shows_order_action_label(): void
+    public function test_guest_navigation_shows_ordering_actions_without_account_links(): void
     {
         $response = $this->get(route('home'));
 
         $response->assertOk();
         $response->assertSee('Pesan Sekarang');
+        $response->assertSee('Cara Pesan');
+        $response->assertSee('Keranjang');
+        $response->assertDontSee('Masuk');
+        $response->assertDontSee('Daftar');
+        $response->assertDontSee('Keluar');
     }
 
     public function test_report_excludes_cancelled_orders_from_revenue(): void
