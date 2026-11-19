@@ -59,7 +59,7 @@
   </div>
 
   @foreach($groups as $cat => $list)
-    <h2 class="cat" id="{{ \Illuminate\Support\Str::slug($cat) }}">{{ $cat }}</h2>
+    <h2 class="cat reveal" id="{{ \Illuminate\Support\Str::slug($cat) }}">{{ $cat }}</h2>
     <div class="grid">
       @foreach($list as $p)
         <article class="card reveal" style="--d:{{ ($loop->index % 4) * 70 }}ms;--c1:{{ $tint[$cat][0] ?? '#ffe3f0' }};--c2:{{ $tint[$cat][1] ?? '#ffb3d6' }}">
