@@ -101,9 +101,9 @@ img{max-width:100%}
 .visual .ph{position:absolute;inset:0;background:linear-gradient(145deg,#ff8fc2,#e4087f 55%,#ff6aa9)}
 .visual .ph img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-slider-wrap{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(145deg,#fff5fa,#ffe0ef)}
-.hero-slider-wrap .slider{width:100%;height:var(--height);position:relative;overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 10% 90%,transparent)}
+.hero-slider-wrap .slider{width:100%;height:100%;position:relative;overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 10% 90%,transparent)}
 .hero-slider-wrap .list{position:relative;width:100%;height:100%}
-.hero-slider-wrap .item{width:var(--width);height:var(--height);position:absolute;top:0;left:100%;animation:autoRun 10s linear infinite;animation-delay:calc((10s / var(--quantity)) * (var(--position) - 1) - 10s)!important;transition:filter .5s}
+.hero-slider-wrap .item{width:var(--width);height:100%;position:absolute;top:0;left:100%;animation:autoRun 10s linear infinite;animation-delay:calc((10s / var(--quantity)) * (var(--position) - 1) - 10s)!important;transition:filter .5s}
 .hero-slider-wrap .card{width:100%;height:100%;padding:0;border:5px solid #fff;border-radius:18px;overflow:hidden;display:block;background:#fff;box-shadow:0 14px 30px rgba(92,20,55,.25);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
 .hero-slider-wrap .card img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-slider-wrap .slider:hover .item{animation-play-state:paused!important;filter:grayscale(1)}
