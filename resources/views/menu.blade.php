@@ -28,20 +28,7 @@
 
     <div class="fx2" style="--d:.25s">
       <div class="visual">
-        <div class="ph">
-          @php
-            $heroImg = file_exists(public_path('images/hero.jpg')) 
-              ? '/images/hero.jpg' 
-              : (file_exists(public_path('images/produk/foto-01.jpg')) 
-                  ? '/images/produk/foto-01.jpg' 
-                  : (file_exists(public_path('images/produk/foto-02.jpg')) ? '/images/produk/foto-02.jpg' : null));
-          @endphp
-          @if($heroImg)
-            <img src="{{ $heroImg }}" alt="Cake Spesial Mom Sitty">
-          @else
-            <div class="hero-placeholder" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
-          @endif
-        </div>
+        @include('partials.hero-slider')
         <div class="cap">
           <small>FRESHLY BAKED BY MOM SITTY</small>
           <span>Bolu Wanderpan • Brudel • Cake Coklat</span>
