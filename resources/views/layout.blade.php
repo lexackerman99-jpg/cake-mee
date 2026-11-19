@@ -165,15 +165,7 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .stat-revenue span{color:#d9c9bc}
 .stat-revenue strong{color:#fff;font-size:clamp(1.6rem,2.6vw,2.1rem);white-space:nowrap}
 @media(max-width:1100px){.stats-grid:has(.stat-revenue){grid-template-columns:repeat(2,minmax(0,1fr))}.stat-revenue{grid-column:1/-1}}
-/* ---------- Admin Layout Full-Width ---------- */
-body.is-admin .bar,
-.bar-admin{max-width:100%;padding:0 32px}
-body.is-admin .page,
-.page.page-admin,
-.page:has(.admin-page){max-width:100%;width:100%;padding:24px 32px 60px}
-.admin-page{max-width:100%;width:100%;margin:0}
-body.is-admin footer .fin,
-.fin-admin{max-width:100%;padding:20px 32px}
+.admin-page{max-width:1160px;margin:0 auto}
 .admin-nav{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 0 30px;padding:0 0 10px;border-bottom:1px solid var(--line)}
 .admin-nav a,.admin-nav button{display:inline-flex;align-items:center;padding:8px 14px;border:0;border-radius:4px;background:transparent;color:var(--mut);font:500 .9rem var(--sans);text-decoration:none;cursor:pointer}
 .admin-nav a:hover,.admin-nav button:hover{background:var(--sand);color:var(--ink)}
@@ -183,24 +175,18 @@ body.is-admin footer .fin,
 .admin-heading h2{margin:0 0 5px}
 .admin-subtitle{margin:0;color:var(--mut)}
 .admin-heading .eyebrow{margin-bottom:4px}
-.admin-panel{padding:22px;background:var(--paper);border:1px solid var(--line);border-radius:6px;width:100%}
+.admin-panel{padding:22px;background:var(--paper);border:1px solid var(--line);border-radius:6px}
 .panel-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
 .panel-heading h3{margin:0;font-size:1.15rem}
 .panel-heading p{margin:4px 0 0;color:var(--mut);font-size:.86rem}
 .panel-heading>a{font-weight:600}
-.admin-table{width:100%;min-width:860px;margin:0;border:0;border-radius:0}
-.admin-table th,.admin-table td{padding:13px 16px;vertical-align:middle;white-space:nowrap}
-.admin-table th{font-size:.88rem;letter-spacing:.02em}
+.admin-table{min-width:720px;margin:0;border:0;border-radius:0}
+.admin-table th,.admin-table td{padding:12px 14px}
+.admin-table td{vertical-align:middle}
 .admin-table tbody tr:hover td{background:var(--cream)}
-.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.admin-table th{white-space:nowrap}
+.table-wrap{overflow-x:auto}
 .table-note{display:block;color:var(--mut);font-size:.8rem;margin-top:3px}
-.col-date{white-space:nowrap;font-variant-numeric:tabular-nums}
-.col-total{white-space:nowrap;font-weight:600;font-variant-numeric:tabular-nums}
-.pay-cell{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
-.pay-status-tag{display:inline-block;font-size:.76rem;font-weight:500;padding:2px 7px;border-radius:4px;background:var(--sand);color:var(--mut);white-space:nowrap}
-.pay-status-tag.is-terbayar{background:#dcefe3;color:#17603c}
-.pay-status-tag.is-ditolak{background:#f4dcdf;color:#8c1b2b}
-.pay-status-tag.is-menunggu{background:#f8ebc4;color:#6b4c00}
 .table-actions{display:flex;gap:7px;align-items:center}
 .table-actions form{margin:0}
 .btn-danger{background:#a62235}
@@ -349,17 +335,14 @@ footer{background:var(--sand);border-top:1px solid var(--line);color:var(--ink);
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
-@php
-  $isAdmin = request()->routeIs('admin.*') || request()->is('loginadmin/*') || request()->is('admin/*') || request()->is('admin');
-@endphp
-<body class="{{ $isAdmin ? 'is-admin' : '' }}">
+<body>
 <header class="top" id="top">
-  <div class="bar {{ $isAdmin ? 'bar-admin' : '' }}">
+  <div class="bar">
     <a class="brand" href="{{ route('home') }}">
       <img src="/logo.png" alt="Logo Mom Sitty">
       <span><b>Cake & Mee</b><small>Mom Sitty</small></span>
     </a>
-    @unless($isAdmin || request()->is('loginadmin'))
+    @unless(request()->is('admin') || request()->is('admin/*') || request()->is('loginadmin') || request()->is('loginadmin/*'))
     <nav class="menu" id="menu">
       <a href="{{ route('home') }}#katalog" class="{{ request()->routeIs('home') ? 'on' : '' }}">Pesan Sekarang</a>
       <a href="{{ route('home') }}#cara-pesan">Cara Pesan</a>
@@ -382,11 +365,11 @@ footer{background:var(--sand);border-top:1px solid var(--line);color:var(--ink);
   @yield('hero')
   <main>@yield('content')</main>
 @else
-  <main class="page {{ $isAdmin ? 'page-admin' : '' }}">@yield('content')</main>
+  <main class="page">@yield('content')</main>
 @endif
 
 <footer>
-  <div class="fin {{ $isAdmin ? 'fin-admin' : '' }}">
+  <div class="fin">
     <div class="fb"><img src="/logo.png" alt=""><div><b>Cake & Mee Mom Sitty</b><small>Menerima Pesanan</small></div></div>
   </div>
   <div class="copy">© {{ date('Y') }} Cake & Mee Mom Sitty. Semua hak dilindungi.</div>

@@ -22,15 +22,15 @@
     @else
       <div class="table-wrap">
         <table class="admin-table">
-          <thead><tr><th>Produk</th><th>Kategori</th><th>Ukuran</th><th class="right">Harga</th><th class="right">Aksi</th></tr></thead>
+          <thead><tr><th>Produk</th><th>Kategori</th><th>Ukuran</th><th class="right">Harga</th><th>Aksi</th></tr></thead>
           <tbody>
           @foreach($products as $product)
             <tr>
               <td><strong>{{ $product->name }}</strong>@if($product->note)<small class="table-note">{{ $product->note }}</small>@endif</td>
               <td>{{ $product->category }}</td>
               <td>{{ $product->size }} cm</td>
-              <td class="right col-total">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
-              <td class="right"><div class="table-actions" style="justify-content: flex-end;">
+              <td class="right">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
+              <td><div class="table-actions">
                 <a class="btn sm" href="{{ route('admin.products.edit', $product) }}">Edit</a>
                 <form method="POST" action="{{ route('admin.products.destroy', $product) }}" onsubmit="return confirm('Yakin ingin menghapus produk ini?')">@csrf @method('DELETE')<button class="btn sm btn-danger">Hapus</button></form>
               </div></td>

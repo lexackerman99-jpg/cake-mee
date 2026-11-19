@@ -29,16 +29,16 @@
     @else
       <div class="table-wrap">
         <table class="admin-table">
-          <thead><tr><th>No. Pesanan</th><th>Pelanggan</th><th>Tanggal</th><th>Status</th><th class="right">Total</th><th class="right">Aksi</th></tr></thead>
+          <thead><tr><th>No. Pesanan</th><th>Pelanggan</th><th>Tanggal</th><th>Status</th><th class="right">Total</th><th></th></tr></thead>
           <tbody>
           @foreach($recentOrders as $order)
             <tr>
-              <td><strong>#{{ $order->number }}</strong></td>
+              <td>#{{ $order->number }}</td>
               <td>{{ $order->customer_name }}</td>
-              <td class="col-date">{{ $order->created_at->format('d M Y, H:i') }}</td>
+              <td>{{ $order->created_at->format('d M Y, H:i') }}</td>
               <td><span class="status-badge status-{{ $order->status }}">{{ ucfirst($order->status) }}</span></td>
-              <td class="right col-total">Rp {{ number_format($order->total, 0, ',', '.') }}</td>
-              <td class="right"><a class="btn sm" href="{{ route('admin.orders.show', $order) }}">Detail</a></td>
+              <td class="right">Rp {{ number_format($order->total, 0, ',', '.') }}</td>
+              <td><a class="btn sm" href="{{ route('admin.orders.show', $order) }}">Detail</a></td>
             </tr>
           @endforeach
           </tbody>

@@ -23,23 +23,17 @@
     @else
       <div class="table-wrap">
         <table class="admin-table">
-          <thead><tr><th>No. Pesanan</th><th>Pelanggan</th><th>WhatsApp</th><th>Tanggal</th><th>Status pesanan</th><th>Pembayaran</th><th class="right">Total</th><th class="right">Aksi</th></tr></thead>
+          <thead><tr><th>No. Pesanan</th><th>Pelanggan</th><th>WhatsApp</th><th>Tanggal</th><th>Status pesanan</th><th>Pembayaran</th><th class="right">Total</th><th></th></tr></thead>
           <tbody>
           @foreach($orders as $order)
             <tr>
-              <td><strong>#{{ $order->number }}</strong></td>
-              <td>{{ $order->customer_name }}</td>
+              <td>#{{ $order->number }}</td><td>{{ $order->customer_name }}</td>
               <td><a href="https://wa.me/{{ preg_replace('/\D+/', '', $order->phone) }}" target="_blank" rel="noopener">{{ $order->phone }}</a></td>
-              <td class="col-date">{{ $order->created_at->format('d M Y, H:i') }}</td>
+              <td>{{ $order->created_at->format('d M Y, H:i') }}</td>
               <td><span class="status-badge status-{{ $order->status }}">{{ ucfirst($order->status) }}</span></td>
-              <td>
-                <div class="pay-cell">
-                  <span class="pay-method">{{ $order->paymentMethodLabel() }}</span>
-                  <span class="pay-status-tag is-{{ $order->payment_status ?? 'menunggu' }}">{{ $order->paymentStatusLabel() }}</span>
-                </div>
-              </td>
-              <td class="right col-total">Rp {{ number_format($order->total, 0, ',', '.') }}</td>
-              <td class="right"><a class="btn sm" href="{{ route('admin.orders.show', $order) }}">Detail</a></td>
+              <td>{{ $order->paymentMethodLabel() }}<small class="table-note">{{ $order->paymentStatusLabel() }}</small></td>
+              <td class="right">Rp {{ number_format($order->total, 0, ',', '.') }}</td>
+              <td><a class="btn sm" href="{{ route('admin.orders.show', $order) }}">Detail</a></td>
             </tr>
           @endforeach
           </tbody>
