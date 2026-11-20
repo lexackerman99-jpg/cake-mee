@@ -29,10 +29,6 @@
     <div class="fx2" style="--d:.25s">
       <div class="visual">
         @include('partials.hero-slider')
-        <div class="cap">
-          <small>FRESHLY BAKED BY MOM SITTY</small>
-          <span>Bolu Wanderpan • Brudel • Cake Coklat</span>
-        </div>
       </div>
     </div>
   </div>
