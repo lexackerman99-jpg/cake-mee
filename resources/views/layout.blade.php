@@ -21,6 +21,10 @@ window.addEventListener('load',function(){document.documentElement.classList.rem
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{min-height:100vh;margin:0;display:flex;flex-direction:column;font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+body:not(.is-admin){isolation:isolate}
+body:not(.is-admin)::before,body:not(.is-admin)::after{content:"";position:fixed;z-index:-1;pointer-events:none;width:min(68vw,560px);aspect-ratio:1;border-radius:50%;filter:blur(70px);opacity:.3;animation:ambientDrift 26s ease-in-out infinite alternate}
+body:not(.is-admin)::before{top:-18vw;left:-16vw;background:radial-gradient(circle,rgba(255,190,224,.78),transparent 70%)}
+body:not(.is-admin)::after{right:-16vw;bottom:-18vw;background:radial-gradient(circle,rgba(255,225,164,.75),transparent 70%);animation-delay:-13s}
 main{flex:1}
 a{color:var(--pink)}
 img{max-width:100%}
@@ -48,7 +52,9 @@ img{max-width:100%}
 @keyframes fadeLeft{from{opacity:0;transform:translateX(50px) scale(.96)}to{opacity:1;transform:none}}
 @keyframes floaty{50%{transform:translateY(-10px)}}
 @keyframes drift{to{transform:translate(40px,30px) scale(1.12)}}
+@keyframes ambientDrift{to{transform:translate3d(7vw,5vh,0) scale(1.12)}}
 @keyframes nudge{50%{transform:translateY(4px)}}
+@keyframes iconShift{0%,100%{transform:translate(0,0) rotate(0)}35%{transform:translate(2px,-3px) rotate(5deg)}70%{transform:translate(-2px,1px) rotate(-4deg)}}
 @keyframes bump{0%{transform:scale(1)}30%{transform:scale(1.5)}60%{transform:scale(.95)}100%{transform:scale(1)}}
 @keyframes laugh-bounce{0%{transform:translateY(0) scale(1.1,.85)}100%{transform:translateY(-.5em) scale(.95,1.1) rotate(-5deg)}}
 @keyframes laugh-wobble{0%{rotate:-2deg}100%{rotate:2deg}}
@@ -140,7 +146,12 @@ img{max-width:100%}
 .feats li{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 18px;box-shadow:0 4px 16px rgba(0,0,0,.03);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
 .feats li:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(228,8,127,.1)}
 .feats .ic{flex:none;width:40px;height:40px;border-radius:12px;background:var(--pink-soft);color:var(--pink);display:grid;place-items:center;transition:.35s var(--ease)}
+.feats .ic .i{animation:iconShift 3.4s ease-in-out infinite}
+.feats li:nth-child(2) .ic .i{animation-delay:-.85s}
+.feats li:nth-child(3) .ic .i{animation-delay:-1.7s}
+.feats li:nth-child(4) .ic .i{animation-delay:-2.55s}
 .feats li:hover .ic{background:var(--pink);color:#fff;transform:scale(1.08)}
+.feats li:hover .ic .i{animation-play-state:paused}
 .feats b{display:block;font-size:.95rem;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:2px}
 .feats span.s{display:block;color:var(--mut);font-size:.82rem;line-height:1.3}
 
@@ -428,6 +439,8 @@ footer{background:#1a0b14;color:#f3d9e6;margin-top:60px}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .js .reveal{opacity:1;transform:none}
   .toy-letter,.ground-shadow{animation:none!important;transform:none!important;rotate:none!important}
+  body:not(.is-admin)::before,body:not(.is-admin)::after{animation:none}
+  .feats .ic .i{animation:none!important}
 }
 </style>
 </head>
@@ -523,8 +536,8 @@ footer{background:#1a0b14;color:#f3d9e6;margin-top:60px}
     var i=q.querySelector('input');
     q.querySelectorAll('button').forEach(function(bt){
       bt.addEventListener('click',function(){
-        var v=(parseInt(i.value,10)||1)+parseInt(bt.getAttribute('data-step'),10);
-        i.value=Math.max(1,Math.min(99,v));
+        var v=(parseInt(i.value,10)||0)+parseInt(bt.getAttribute('data-step'),10);
+        i.value=Math.max(0,Math.min(99,v));
       });
     });
   });
@@ -533,7 +546,7 @@ footer{background:#1a0b14;color:#f3d9e6;margin-top:60px}
     var y=sessionStorage.getItem('sy');
     if(y!==null){sessionStorage.removeItem('sy');window.scrollTo({top:parseInt(y,10),behavior:'instant'})}
   }catch(e){}
-  document.querySelectorAll('form.buy').forEach(function(f){
+  document.querySelectorAll('form.order-form').forEach(function(f){
     f.addEventListener('submit',function(){try{sessionStorage.setItem('sy',window.scrollY)}catch(e){}});
   });
 

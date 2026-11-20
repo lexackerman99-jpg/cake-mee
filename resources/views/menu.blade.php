@@ -60,7 +60,7 @@
 <section class="sec" id="katalog">
   <span class="eyebrow reveal">KATALOG KUE</span>
   <h2 class="t reveal" style="--d:60ms">Pilih kue favoritmu</h2>
-  <p class="sub reveal" style="--d:120ms">Assalamualaikum bunda Sholeha. Open order insyaallah. Pilih kue, masukkan ke keranjang, lalu checkout.</p>
+  <p class="sub reveal" style="--d:120ms">Assalamualaikum bunda Sholeha. Pilih jumlah setiap kue, lalu tekan + Keranjang pada salah satu kue. Semua pilihan dengan jumlah di atas 0 akan masuk sekaligus.</p>
 
   <div class="chips">
     @foreach($groups as $cat => $list)
@@ -68,6 +68,7 @@
     @endforeach
   </div>
 
+  <form class="order-form" method="POST" action="{{ route('cart.add') }}">@csrf
   @foreach($groups as $cat => $list)
     <h2 class="cat reveal" id="{{ \Illuminate\Support\Str::slug($cat) }}">{{ $cat }}</h2>
     <div class="grid">
@@ -86,15 +87,16 @@
             <h3>{{ $p->name }}</h3>
             <small>{{ $p->note ?: 'Ukuran '.$p->size.' cm' }}</small>
             <div class="price">Rp {{ number_format($p->price,0,',','.') }}</div>
-            <form class="buy" method="POST" action="{{ route('cart.add',$p) }}">@csrf
-              <div class="qty"><button type="button" data-step="-1" aria-label="Kurangi">−</button><input type="number" name="qty" value="1" min="1" max="99" aria-label="Jumlah"><button type="button" data-step="1" aria-label="Tambah">+</button></div>
+            <div class="buy">
+              <div class="qty"><button type="button" data-step="-1" aria-label="Kurangi">−</button><input type="number" name="qty[{{ $p->id }}]" value="0" min="0" max="99" aria-label="Jumlah"><button type="button" data-step="1" aria-label="Tambah">+</button></div>
               <button class="btn">+ Keranjang</button>
-            </form>
+            </div>
           </div>
         </article>
       @endforeach
     </div>
   @endforeach
+  </form>
 
   <p class="note">Catatan: untuk full topping coklat, harga kue ditambah Rp 5.000. Mohon dikonfirmasi lagi bila ada yang kurang dimengerti.</p>
 </section>

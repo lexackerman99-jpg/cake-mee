@@ -55,7 +55,60 @@ class CheckoutPaymentTest extends TestCase
 
         $confirmation->assertOk();
         $confirmation->assertSee('Pesanan #CM-0001');
+        $expectedWhatsappMessage = implode("\n", [
+            'Assalamualaikum Mom Sitty,',
+            '',
+            'Saya ingin mengonfirmasi pesanan *#CM-0001*.',
+            '',
+            '*Rincian Pesanan*',
+            '1. Cake Uji uk.28 — 2 pcs',
+            '',
+            '*Pembayaran*',
+            'Metode: QRIS',
+            'Status: Menunggu konfirmasi',
+            '',
+            '*Ringkasan Pembayaran*',
+            'Subtotal: Rp 250.000',
+            'Diskon: Rp 0',
+            'Total: *Rp 250.000*',
+            '',
+            '*Data Pemesan*',
+            'Nama: Pelanggan Uji',
+            'No. WhatsApp: 08123456789',
+            'Alamat: Alamat Uji',
+        ]);
+        $confirmation->assertSee(rawurlencode($expectedWhatsappMessage), false);
         $this->assertGuest();
+    }
+
+    public function test_checkout_creates_order_items_only_for_products_with_positive_quantities(): void
+    {
+        $zeroQuantityProduct = $this->createProduct();
+        $orderedProduct = $this->createProduct();
+        $this->withSession(['cart' => [
+            $zeroQuantityProduct->id => 0,
+            $orderedProduct->id => 1,
+        ]]);
+
+        $response = $this->post(route('checkout.place'), [
+            'customer_name' => 'Pelanggan Uji',
+            'phone' => '08123456789',
+            'address' => 'Alamat Uji',
+            'payment_method' => 'qris',
+        ]);
+
+        $response->assertRedirect(route('order.done'));
+        $order = Order::firstOrFail();
+        $this->assertDatabaseHas('order_items', [
+            'order_id' => $order->id,
+            'product_id' => $orderedProduct->id,
+            'qty' => 1,
+        ]);
+        $this->assertDatabaseMissing('order_items', [
+            'order_id' => $order->id,
+            'product_id' => $zeroQuantityProduct->id,
+        ]);
+        $this->assertDatabaseCount('order_items', 1);
     }
 
     public function test_checkout_rejects_unsupported_payment_method_without_creating_order(): void

@@ -27,7 +27,7 @@ Route::middleware('admin')->prefix('loginadmin')->name('admin.')->group(function
     Route::get('/reports',[\App\Http\Controllers\AdminReportController::class,'index'])->name('reports.index');
 });
 
-Route::post('/cart/add/{product}',[ShopController::class,'add'])->name('cart.add');
+Route::post('/cart/add',[ShopController::class,'add'])->name('cart.add');
 Route::get('/cart',[ShopController::class,'cart'])->name('cart');
 Route::post('/cart/remove/{product}',[ShopController::class,'remove'])->name('cart.remove');
 Route::get('/checkout',[ShopController::class,'checkout'])->name('checkout');
